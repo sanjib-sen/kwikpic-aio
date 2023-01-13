@@ -1,8 +1,6 @@
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
-import matplotlib.pyplot as plt
-import numpy as np
 
 
 def add_text_watermark(image_path, text, size=11, directory="", text_position="bottom-right"):
