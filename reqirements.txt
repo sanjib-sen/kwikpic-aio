@@ -1,3 +1,4 @@
-opencv-python
+opencv-python-headless
 pillow
 pyside2
+PyQt5
