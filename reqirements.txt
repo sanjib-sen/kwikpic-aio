@@ -1,4 +1,0 @@
-opencv-python-headless
-pillow
-PyQt6
-pyinstaller

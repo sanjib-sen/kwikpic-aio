@@ -2,9 +2,22 @@
 
 ## Instruction
 
-```bash
-python3 -m venv ven && pip install -r requirements.txt && python3 main.py
+## Windows
+```ps
+python -m venv venv
+./venv/Scripts/activate
+pip install -r requirements.txt
+python main.py
 ```
+
+## Mac and Linux
+```ps
+python3 -m venv venv
+./venv/bin/activate
+pip install -r requirements.txt
+python3 main.py
+```
+
 
 ## Screenshot
 

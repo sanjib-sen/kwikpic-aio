@@ -13,7 +13,7 @@ import cv2
 if getattr(sys, 'frozen', False):
     logo = os.path.join(sys._MEIPASS, 'logo.png')
 else:
-    logo = "LOGO/logo.png"
+    logo = "logo/logo.png"
 
 
 QUALITY_PERCENTAGE = 90
