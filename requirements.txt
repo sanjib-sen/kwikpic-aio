@@ -1,4 +1,4 @@
-opencv-python
+opencv-python-headless
 pillow
 PyQt5
 pyinstaller

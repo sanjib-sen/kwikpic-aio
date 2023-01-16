@@ -91,8 +91,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_9.setFont(font)
@@ -130,7 +129,7 @@ class Ui_Kwikpic(object):
         self.watermark_cropped_src_browse = QtWidgets.QPushButton(
             self.watermark)
         self.watermark_cropped_src_browse.setGeometry(
-            QtCore.QRect(430, 280, 61, 21))
+            QtCore.QRect(420, 280, 61, 21))
         self.watermark_cropped_src_browse.setObjectName(
             "watermark_cropped_src_browse")
         self.label_23 = QtWidgets.QLabel(self.watermark)
@@ -138,8 +137,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_23.setFont(font)
@@ -149,19 +147,16 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_24.setFont(font)
         self.label_24.setObjectName("label_24")
         self.label_25 = QtWidgets.QLabel(self.watermark)
-        self.label_25.setGeometry(QtCore.QRect(160, 210, 51, 21))
+        self.label_25.setGeometry(QtCore.QRect(160, 210, 70, 21))
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_25.setFont(font)
@@ -171,8 +166,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_26.setFont(font)
@@ -182,8 +176,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.watermark_type_label.setFont(font)
@@ -193,8 +186,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_28.setFont(font)
@@ -210,8 +202,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.watermark_progress.setFont(font)
@@ -227,8 +218,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_13.setFont(font)
@@ -279,8 +269,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_10.setFont(font)
@@ -290,8 +279,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_11.setFont(font)
@@ -301,8 +289,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.optimize_progress.setFont(font)
@@ -333,8 +320,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_20.setFont(font)
@@ -344,8 +330,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.rename_progress.setFont(font)
@@ -367,8 +352,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_21.setFont(font)
@@ -405,8 +389,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_29.setFont(font)
@@ -416,8 +399,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_30.setFont(font)
@@ -427,8 +409,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.copy_progress.setFont(font)
@@ -441,8 +422,7 @@ class Ui_Kwikpic(object):
         font = QtGui.QFont()
         font.setFamily("Montserrat")
         font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
+
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.label_31.setFont(font)

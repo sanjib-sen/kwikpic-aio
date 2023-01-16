@@ -2,22 +2,17 @@
 
 ## Instruction
 
-## Windows
-```ps
-python -m venv venv
-./venv/Scripts/activate
-pip install -r requirements.txt
-python main.py
+### Windows
+
+```sh
+python -m venv venv && ./venv/Scripts/activate && pip install pillow opencv-python pyqt5 pyinstaller && python main.py
 ```
 
-## Mac and Linux
-```ps
-python3 -m venv venv
-./venv/bin/activate
-pip install -r requirements.txt
-python3 main.py
-```
+### Mac
 
+```sh
+python3 -m venv venv && source venv/bin/activate && pip install pillow opencv-python pyqt6 pyinstaller && python3 main.py
+```
 
 ## Screenshot
 
@@ -25,13 +20,13 @@ python3 main.py
 
 ## BUILD
 
-### Windows
+### Windows Build
 
 ```ps
 pyinstaller --onefile --name Kwikpic --noconsole --clean --icon="icon.ico" --add-data "logo/logo.png;."  main.py --paths="venv\Lib\site-packages\cv2"
 ```
 
-### Mac
+### Mac Build
 
 ```sh
 pyinstaller --noconsole --name Kwikpic --windowed --clean --onedir --add-data "logo/logo.png:." --icon icon.ico main.py
