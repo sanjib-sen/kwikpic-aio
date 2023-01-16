@@ -2,7 +2,7 @@
 
 
 from PIL import Image, ImageFont, ImageDraw
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 import shutil
 from urllib.parse import unquote
 import os
