@@ -3,9 +3,17 @@
 ## Instruction
 
 ```bash
-pip install -r requirements.txt && python3 main.py
+python3 -m venv ven && pip install -r requirements.txt && python3 main.py
 ```
 
 ## Screenshot
 
 ![image](screenshot.jpeg)
+
+## BUILD
+
+### Windows
+
+```ps
+pyinstaller --onefile --name Kwikpic --noconsole --clean --icon="icon.ico" --add-data "logo/logo.png;."  main.py --paths="venv\Lib\site-packages\cv2"
+```

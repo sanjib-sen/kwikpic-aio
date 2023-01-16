@@ -10,6 +10,12 @@ import threading
 import sys
 import cv2
 
+if getattr(sys, 'frozen', False):
+    logo = os.path.join(sys._MEIPASS, 'logo.png')
+else:
+    logo = "LOGO/logo.png"
+
+
 QUALITY_PERCENTAGE = 90
 watermark_positions = ["Bottom Right", "Bottom Left", "Top Left", "Top Right"]
 watermark_types = ["Image", "Text"]
@@ -18,26 +24,30 @@ watermark_types = ["Image", "Text"]
 class Ui_Kwikpic(object):
     def setupUi(self, Kwikpic):
         Kwikpic.setObjectName("Kwikpic")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("icon.ico"),
+                       QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        Kwikpic.setWindowIcon(icon)
         Kwikpic.resize(800, 600)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Kwikpic.sizePolicy().hasHeightForWidth())
         Kwikpic.setSizePolicy(sizePolicy)
         Kwikpic.setMinimumSize(QtCore.QSize(800, 600))
         Kwikpic.setMaximumSize(QtCore.QSize(800, 600))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../OneDrive/Documents/logo, favicon/Group 2015@LDPI.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        Kwikpic.setWindowIcon(icon)
         Kwikpic.setAutoFillBackground(False)
         self.centralwidget = QtWidgets.QWidget(Kwikpic)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setGeometry(QtCore.QRect(0, 0, 791, 591))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.tabWidget.sizePolicy().hasHeightForWidth())
         self.tabWidget.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setBold(False)
@@ -64,10 +74,12 @@ class Ui_Kwikpic(object):
         self.watermark_position.setObjectName("watermark_position")
         self.watermark_size = QtWidgets.QLineEdit(self.watermark)
         self.watermark_size.setGeometry(QtCore.QRect(530, 280, 71, 21))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.watermark_size.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.watermark_size.sizePolicy().hasHeightForWidth())
         self.watermark_size.setSizePolicy(sizePolicy)
         self.watermark_size.setMaximumSize(QtCore.QSize(16777215, 16777215))
         font = QtGui.QFont()
@@ -97,7 +109,7 @@ class Ui_Kwikpic(object):
         self.label_12 = QtWidgets.QLabel(self.watermark)
         self.label_12.setGeometry(QtCore.QRect(220, 20, 301, 131))
         self.label_12.setText("")
-        self.label_12.setPixmap(QtGui.QPixmap("logo/Primary_Logo.png"))
+        self.label_12.setPixmap(QtGui.QPixmap(logo))
         self.label_12.setObjectName("label_12")
         self.watermark_browse_src = QtWidgets.QPushButton(self.watermark)
         self.watermark_browse_src.setGeometry(QtCore.QRect(290, 150, 71, 21))
@@ -105,16 +117,22 @@ class Ui_Kwikpic(object):
         self.watermark_type_combo = QtWidgets.QComboBox(self.watermark)
         self.watermark_type_combo.setGeometry(QtCore.QRect(310, 230, 81, 22))
         self.watermark_type_combo.setObjectName("watermark_type_combo")
-        self.watermark_cropped_src_or_text = QtWidgets.QLineEdit(self.watermark)
-        self.watermark_cropped_src_or_text.setGeometry(QtCore.QRect(160, 280, 261, 21))
+        self.watermark_cropped_src_or_text = QtWidgets.QLineEdit(
+            self.watermark)
+        self.watermark_cropped_src_or_text.setGeometry(
+            QtCore.QRect(160, 280, 261, 21))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
         self.watermark_cropped_src_or_text.setFont(font)
-        self.watermark_cropped_src_or_text.setObjectName("watermark_cropped_src_or_text")
-        self.watermark_cropped_src_browse = QtWidgets.QPushButton(self.watermark)
-        self.watermark_cropped_src_browse.setGeometry(QtCore.QRect(430, 280, 61, 21))
-        self.watermark_cropped_src_browse.setObjectName("watermark_cropped_src_browse")
+        self.watermark_cropped_src_or_text.setObjectName(
+            "watermark_cropped_src_or_text")
+        self.watermark_cropped_src_browse = QtWidgets.QPushButton(
+            self.watermark)
+        self.watermark_cropped_src_browse.setGeometry(
+            QtCore.QRect(430, 280, 61, 21))
+        self.watermark_cropped_src_browse.setObjectName(
+            "watermark_cropped_src_browse")
         self.label_23 = QtWidgets.QLabel(self.watermark)
         self.label_23.setGeometry(QtCore.QRect(320, 190, 231, 21))
         font = QtGui.QFont()
@@ -182,9 +200,11 @@ class Ui_Kwikpic(object):
         self.label_28.setFont(font)
         self.label_28.setObjectName("label_28")
         self.watermark_optimize_checkbox = QtWidgets.QCheckBox(self.watermark)
-        self.watermark_optimize_checkbox.setGeometry(QtCore.QRect(160, 320, 21, 21))
+        self.watermark_optimize_checkbox.setGeometry(
+            QtCore.QRect(160, 320, 21, 21))
         self.watermark_optimize_checkbox.setText("")
-        self.watermark_optimize_checkbox.setObjectName("watermark_optimize_checkbox")
+        self.watermark_optimize_checkbox.setObjectName(
+            "watermark_optimize_checkbox")
         self.watermark_progress = QtWidgets.QLabel(self.watermark)
         self.watermark_progress.setGeometry(QtCore.QRect(160, 400, 441, 121))
         font = QtGui.QFont()
@@ -196,9 +216,12 @@ class Ui_Kwikpic(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.watermark_progress.setFont(font)
         self.watermark_progress.setObjectName("watermark_progress")
-        self.watermark_browse_destination = QtWidgets.QPushButton(self.watermark)
-        self.watermark_browse_destination.setGeometry(QtCore.QRect(520, 150, 71, 21))
-        self.watermark_browse_destination.setObjectName("watermark_browse_destination")
+        self.watermark_browse_destination = QtWidgets.QPushButton(
+            self.watermark)
+        self.watermark_browse_destination.setGeometry(
+            QtCore.QRect(520, 150, 71, 21))
+        self.watermark_browse_destination.setObjectName(
+            "watermark_browse_destination")
         self.label_13 = QtWidgets.QLabel(self.watermark)
         self.label_13.setGeometry(QtCore.QRect(390, 129, 201, 21))
         font = QtGui.QFont()
@@ -241,14 +264,16 @@ class Ui_Kwikpic(object):
         self.label_16 = QtWidgets.QLabel(self.optimize)
         self.label_16.setGeometry(QtCore.QRect(220, 50, 301, 131))
         self.label_16.setText("")
-        self.label_16.setPixmap(QtGui.QPixmap("logo/Primary_Logo.png"))
+        self.label_16.setPixmap(QtGui.QPixmap(logo))
         self.label_16.setObjectName("label_16")
         self.optimize_browse_src = QtWidgets.QPushButton(self.optimize)
         self.optimize_browse_src.setGeometry(QtCore.QRect(310, 190, 71, 21))
         self.optimize_browse_src.setObjectName("optimize_browse_src")
         self.optimize_browse_destination = QtWidgets.QPushButton(self.optimize)
-        self.optimize_browse_destination.setGeometry(QtCore.QRect(540, 190, 71, 21))
-        self.optimize_browse_destination.setObjectName("optimize_browse_destination")
+        self.optimize_browse_destination.setGeometry(
+            QtCore.QRect(540, 190, 71, 21))
+        self.optimize_browse_destination.setObjectName(
+            "optimize_browse_destination")
         self.label_10 = QtWidgets.QLabel(self.optimize)
         self.label_10.setGeometry(QtCore.QRect(170, 170, 121, 21))
         font = QtGui.QFont()
@@ -298,7 +323,7 @@ class Ui_Kwikpic(object):
         self.label_15 = QtWidgets.QLabel(self.rename)
         self.label_15.setGeometry(QtCore.QRect(220, 50, 301, 131))
         self.label_15.setText("")
-        self.label_15.setPixmap(QtGui.QPixmap("logo/Primary_Logo.png"))
+        self.label_15.setPixmap(QtGui.QPixmap(logo))
         self.label_15.setObjectName("label_15")
         self.rename_browse_src = QtWidgets.QPushButton(self.rename)
         self.rename_browse_src.setGeometry(QtCore.QRect(310, 190, 71, 21))
@@ -326,8 +351,10 @@ class Ui_Kwikpic(object):
         self.rename_progress.setFont(font)
         self.rename_progress.setObjectName("rename_progress")
         self.rename_browse_destination = QtWidgets.QPushButton(self.rename)
-        self.rename_browse_destination.setGeometry(QtCore.QRect(540, 190, 71, 21))
-        self.rename_browse_destination.setObjectName("rename_browse_destination")
+        self.rename_browse_destination.setGeometry(
+            QtCore.QRect(540, 190, 71, 21))
+        self.rename_browse_destination.setObjectName(
+            "rename_browse_destination")
         self.rename_destination = QtWidgets.QLineEdit(self.rename)
         self.rename_destination.setGeometry(QtCore.QRect(400, 190, 141, 21))
         font = QtGui.QFont()
@@ -358,17 +385,21 @@ class Ui_Kwikpic(object):
         self.label_17 = QtWidgets.QLabel(self.copy)
         self.label_17.setGeometry(QtCore.QRect(220, 50, 301, 131))
         self.label_17.setText("")
-        self.label_17.setPixmap(QtGui.QPixmap("logo/Primary_Logo.png"))
+        self.label_17.setPixmap(QtGui.QPixmap(logo))
         self.label_17.setObjectName("label_17")
         self.copy_browse_src_textFile = QtWidgets.QPushButton(self.copy)
-        self.copy_browse_src_textFile.setGeometry(QtCore.QRect(560, 230, 81, 21))
+        self.copy_browse_src_textFile.setGeometry(
+            QtCore.QRect(560, 230, 81, 21))
         self.copy_browse_src_textFile.setObjectName("copy_browse_src_textFile")
         self.copy_destination_folder = QtWidgets.QLineEdit(self.copy)
-        self.copy_destination_folder.setGeometry(QtCore.QRect(420, 180, 141, 21))
+        self.copy_destination_folder.setGeometry(
+            QtCore.QRect(420, 180, 141, 21))
         self.copy_destination_folder.setObjectName("copy_destination_folder")
         self.copy_browse_destination_folder = QtWidgets.QPushButton(self.copy)
-        self.copy_browse_destination_folder.setGeometry(QtCore.QRect(560, 180, 81, 21))
-        self.copy_browse_destination_folder.setObjectName("copy_browse_destination_folder")
+        self.copy_browse_destination_folder.setGeometry(
+            QtCore.QRect(560, 180, 81, 21))
+        self.copy_browse_destination_folder.setObjectName(
+            "copy_browse_destination_folder")
         self.label_29 = QtWidgets.QLabel(self.copy)
         self.label_29.setGeometry(QtCore.QRect(170, 210, 91, 21))
         font = QtGui.QFont()
@@ -434,45 +465,58 @@ class Ui_Kwikpic(object):
         self.watermark_submit.setText(_translate("Kwikpic", "Add Watermark"))
         self.label_14.setText(_translate("Kwikpic", "(in pts)"))
         self.watermark_browse_src.setText(_translate("Kwikpic", "Browse"))
-        self.watermark_cropped_src_browse.setText(_translate("Kwikpic", "Browse"))
-        self.label_23.setText(_translate("Kwikpic", "<html><head/><body><p><span style=\" font-size:11pt; color:#0f80ff;\">Watermark Details</span></p></body></html>"))
+        self.watermark_cropped_src_browse.setText(
+            _translate("Kwikpic", "Browse"))
+        self.label_23.setText(_translate(
+            "Kwikpic", "<html><head/><body><p><span style=\" font-size:11pt; color:#0f80ff;\">Watermark Details</span></p></body></html>"))
         self.label_24.setText(_translate("Kwikpic", "Size"))
         self.label_25.setText(_translate("Kwikpic", "Position"))
         self.label_26.setText(_translate("Kwikpic", "Type"))
         self.watermark_type_label.setText(_translate("Kwikpic", "Image"))
         self.label_28.setText(_translate("Kwikpic", "Optimize Images as well"))
-        self.watermark_progress.setText(_translate("Kwikpic", "Click \"Add Watermark\" to continue..."))
-        self.watermark_browse_destination.setText(_translate("Kwikpic", "Browse"))
+        self.watermark_progress.setText(_translate(
+            "Kwikpic", "Click \"Add Watermark\" to continue..."))
+        self.watermark_browse_destination.setText(
+            _translate("Kwikpic", "Browse"))
         self.label_13.setText(_translate("Kwikpic", "Destination Folder"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.watermark), _translate("Kwikpic", "Watermark"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.watermark), _translate("Kwikpic", "Watermark"))
         self.optimize_submit.setText(_translate("Kwikpic", "Optimize Images"))
         self.optimize_browse_src.setText(_translate("Kwikpic", "Browse"))
-        self.optimize_browse_destination.setText(_translate("Kwikpic", "Browse"))
+        self.optimize_browse_destination.setText(
+            _translate("Kwikpic", "Browse"))
         self.label_10.setText(_translate("Kwikpic", "Source Folder"))
         self.label_11.setText(_translate("Kwikpic", "Destination Folder"))
-        self.optimize_progress.setText(_translate("Kwikpic", "Click \"Optimize\" to continue..."))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.optimize), _translate("Kwikpic", "Optimize"))
+        self.optimize_progress.setText(_translate(
+            "Kwikpic", "Click \"Optimize\" to continue..."))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.optimize), _translate("Kwikpic", "Optimize"))
         self.rename_submit.setText(_translate("Kwikpic", "Rename Files"))
         self.rename_browse_src.setText(_translate("Kwikpic", "Browse"))
         self.label_20.setText(_translate("Kwikpic", "Source Folder"))
-        self.rename_progress.setText(_translate("Kwikpic", "Click \"Rename Files\" to continue"))
+        self.rename_progress.setText(_translate(
+            "Kwikpic", "Click \"Rename Files\" to continue"))
         self.rename_browse_destination.setText(_translate("Kwikpic", "Browse"))
         self.label_21.setText(_translate("Kwikpic", "Destination Folder"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.rename), _translate("Kwikpic", "Rename"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.rename), _translate("Kwikpic", "Rename"))
         self.copy_submit.setText(_translate("Kwikpic", "Copy"))
         self.copy_browse_src_textFile.setText(_translate("Kwikpic", "Browse"))
-        self.copy_browse_destination_folder.setText(_translate("Kwikpic", "Browse"))
+        self.copy_browse_destination_folder.setText(
+            _translate("Kwikpic", "Browse"))
         self.label_29.setText(_translate("Kwikpic", "Text File"))
         self.label_30.setText(_translate("Kwikpic", "Destination Folder"))
-        self.copy_progress.setText(_translate("Kwikpic", "Click on \"Copy\" to continue..."))
+        self.copy_progress.setText(_translate(
+            "Kwikpic", "Click on \"Copy\" to continue..."))
         self.copy_browse_src_folder.setText(_translate("Kwikpic", "Browse"))
         self.label_31.setText(_translate("Kwikpic", "Source Folder"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.copy), _translate("Kwikpic", "Copy"))
-
+        self.tabWidget.setTabText(self.tabWidget.indexOf(
+            self.copy), _translate("Kwikpic", "Copy"))
 
         # RENAME PROCESS
         self.rename_browse_src.clicked.connect(self.renameSelectSourceFolder)
-        self.rename_browse_destination.clicked.connect(self.renameSelectDestinationFolder)
+        self.rename_browse_destination.clicked.connect(
+            self.renameSelectDestinationFolder)
         self.rename_submit.clicked.connect(self.renameProcessThread)
 
         # OPTIMIZE PROCESS
@@ -516,6 +560,7 @@ class Ui_Kwikpic(object):
         folder = QtWidgets.QFileDialog.getExistingDirectory(
             Form, "Choose Source Folder")
         self.rename_src.setText(folder)
+
     def renameSelectDestinationFolder(self):
         folder = QtWidgets.QFileDialog.getExistingDirectory(
             Form, "Choose Destination Folder")
@@ -855,7 +900,7 @@ class Ui_Kwikpic(object):
                     cv2.imwrite(COMPRESS_DIR+img_rel_path, resized,
                                 [int(cv2.IMWRITE_JPEG_QUALITY), QUALITY_PERCENTAGE])
         shutil. rmtree(UNKNOWN_DIR)
-        os.rename(COMPRESS_DIR,UNKNOWN_DIR)
+        os.rename(COMPRESS_DIR, UNKNOWN_DIR)
         self.watermark_progress.setText(
             "Completed. "+str(count)+" images watermarked and optimized")
 
