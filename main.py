@@ -455,7 +455,7 @@ class Ui_Kwikpic(object):
         self.statusbar.setObjectName("statusbar")
 
         self.retranslateUi(Kwikpic)
-        self.tabWidget.setCurrentIndex(3)
+        # self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(Kwikpic)
 
     def retranslateUi(self, Kwikpic):
@@ -570,6 +570,14 @@ class Ui_Kwikpic(object):
         if self.rename_src.text() == None or self.rename_src.text() == "":
             self.rename_progress.setText("Please Select a Source Folder.")
             return
+        if self.rename_destination.text() == None or self.rename_destination.text() == "":
+            self.rename_progress.setText(
+                "Please Select a Destination Folder.")
+            return
+        if isDestInSrc(self.rename_src.text(), self.rename_destination.text()):
+            self.rename_progress.setText(
+                "Destination folder can not be inside the Source Folder")
+            return
         x = threading.Thread(target=self.renameProcess)
         x.start()
 
@@ -586,38 +594,24 @@ class Ui_Kwikpic(object):
             filesList = os.listdir(currentPath)
             newDir = None
             if not givenDestination:
-                newDir = self.rename_destination.text()
+                newDir = self.rename_destination.text()+"/"
             else:
-                newDir = givenDestination
+                newDir = givenDestination+"/"
 
-            # print(newDir)
             for item in filesList:
-                # print("THIS IS AN ITEM", item)
                 try:
-                    # print(os.path.join(currentPath, item))
-                    # print(os.path.isfile(os.path.join(currentPath, item)))
                     if os.path.isfile(os.path.join(currentPath, item)):
 
-                        # execute rename operation
                         filteredName = unquote(item.rsplit("@", 1)[-1])
-
-                        # print(filteredName, os.path.join(
-                        #     currentPath, item), os.path.join(newDir, filteredName))
                         shutil.copyfile(os.path.join(
                             currentPath, item), os.path.join(newDir, filteredName))
-                        print("-----------edwdwddw--------------------",
-                              'FROM:', os.path.join(
-                                  currentPath, item), 'TO:', os.path.join(newDir, filteredName))
-                        # print("done", filteredName)
                     else:
                         if not os.path.exists(os.path.join(newDir, item)):
                             os.mkdir(os.path.join(newDir, item))
                         givenPath = os.path.join(currentPath, item)
                         givenDestination = os.path.join(newDir, item)
-                        print(givenPath, givenDestination)
                         self.renameProcess(givenPath, givenDestination)
                 except Exception as e:
-                    # print("failed for", item)
                     pass
         except Exception as e:
             self.rename_progress.setText("Error occurred:", e)
@@ -647,17 +641,18 @@ class Ui_Kwikpic(object):
             self.optimize_progress.setText(
                 "Please Select a Destination Folder.")
             return
+        if isDestInSrc(self.optimize_src.text(), self.optimize_destination.text()):
+            self.optimize_progress.setText(
+                "Destination folder can not be inside the Source Folder")
+            return
         x = threading.Thread(target=self.optimizeProcess)
         x.start()
 
     def optimizeProcess(self):
         UNKNOWN_DIR = self.optimize_src.text()
-        COMPRESS_DIR = self.optimize_destination.text()+"/Optimized/"
-
+        COMPRESS_DIR = self.optimize_destination.text()+"/"
         if not os.path.exists(COMPRESS_DIR):
             os.mkdir(COMPRESS_DIR)
-        print("Optimizing", UNKNOWN_DIR)
-
         count = fileCount(UNKNOWN_DIR)
         curr_count = 0
 
@@ -678,7 +673,6 @@ class Ui_Kwikpic(object):
                 if img is not None:
                     self.optimize_progress.setText(
                         str(str(curr_count)+" out of "+str(count)+" images optimized"))
-                    print('Original Dimensions : '+img_name, img.shape)
                     scale_percent = 60
                     shape = img.shape
                     if shape[0] > shape[1]:
@@ -686,23 +680,17 @@ class Ui_Kwikpic(object):
                             scale_percent = 100
                         else:
                             scale_percent = 216000 / shape[0]
-                            print(scale_percent)
                     else:
                         if shape[1] <= 2160:
                             scale_percent = 100
                         else:
                             scale_percent = 216000 / shape[1]
-                            print(scale_percent)
-
                     width = int(img.shape[1] * scale_percent / 100)
                     height = int(img.shape[0] * scale_percent / 100)
                     dim = (width, height)
 
                     resized = cv2.resize(
                         img, dim, interpolation=cv2.INTER_AREA)
-
-                    print('Resized Dimensions : ', resized.shape)
-
                     dir_name = os.path.dirname(img_rel_path)
                     if not os.path.exists(COMPRESS_DIR+dir_name) and not COMPRESS_DIR+dir_name == "":
                         os.makedirs(COMPRESS_DIR+dir_name)
@@ -745,6 +733,10 @@ class Ui_Kwikpic(object):
         if self.copy_destination_folder.text() == None or self.copy_destination_folder.text() == "":
             self.copy_progress.setText("Please Select a Destination Folder.")
             return
+        if isDestInSrc(self.copy_src_folder.text(), self.copy_destination_folder.text()):
+            self.copy_progress.setText(
+                "Destination folder can not be inside the Source Folder")
+            return
         x = threading.Thread(target=self.copyProcess)
         x.start()
 
@@ -755,7 +747,7 @@ class Ui_Kwikpic(object):
             for file in files:
                 if file in file_names and file not in copy_completed:
                     path_file = os.path.join(root, file)
-                    shutil.copy2(path_file, self.copy_destination_folder)
+                    shutil.copy2(path_file, self.copy_destination_folder+"/")
                     copy_completed.append(file)
                     self.copy_progress.setText(
                         f'Copying... {len(copy_completed)} out of {len(file_names)} files copied')
@@ -776,7 +768,7 @@ class Ui_Kwikpic(object):
     def watermarkSelectDestinationFolder(self):
         folder = QtWidgets.QFileDialog.getExistingDirectory(
             Form, "Choose Destination Folder of Images")
-        self.watermark_browse_destination.setText(folder)
+        self.watermark_destination.setText(folder)
 
     def watermarkTypeChanges(self):
         current_type = self.watermark_type_combo.currentText()
@@ -795,6 +787,10 @@ class Ui_Kwikpic(object):
         if self.watermark_src.text() == None or self.watermark_src.text() == "":
             self.watermark_progress.setText("Please Select a Source Folder.")
             return
+        if self.watermark_destination.text() == None or self.watermark_destination.text() == "":
+            self.watermark_progress.setText(
+                "Please Select a Destination Folder.")
+            return
         if self.watermark_cropped_src_or_text.text() == None or self.watermark_cropped_src_or_text.text() == "":
             self.watermark_progress.setText(
                 "Please Select an Image or Write Texts")
@@ -807,14 +803,21 @@ class Ui_Kwikpic(object):
             self.watermark_progress.setText(
                 "The maximum font size for Image is 17 pts")
             return
+        if isDestInSrc(self.watermark_src.text(), self.watermark_destination.text()):
+            self.watermark_progress.setText(
+                "Destination folder can not be inside the Source Folder")
+            return
 
         x = threading.Thread(target=self.watermarkProcess)
         x.start()
 
     def watermarkProcess(self):
+        if os.path.exists(os.getcwd()+"/temp"):
+            shutil.rmtree(os.getcwd()+"/temp")
         watermark_type = self.watermark_type_combo.currentText()
         destination = self.watermark_destination.text()
-
+        if self.watermark_optimize_checkbox.isChecked():
+            destination = os.getcwd()+"/temp"
         if not os.path.exists(destination):
             os.mkdir(destination)
 
@@ -849,12 +852,10 @@ class Ui_Kwikpic(object):
             self.justOptimize()
 
     def justOptimize(self):
-        UNKNOWN_DIR = self.watermark_destination.text()
-        COMPRESS_DIR = self.watermark_src.text()+"/Optimized Images/"
-        if not os.path.exists(COMPRESS_DIR):
-            os.mkdir(COMPRESS_DIR)
+        UNKNOWN_DIR = os.getcwd()+"/temp/"
+        COMPRESS_DIR = self.watermark_destination.text()+"/"
+        print(COMPRESS_DIR)
         self.watermark_progress.setText("Optimizing...")
-        print("Optimizing", UNKNOWN_DIR)
         count = fileCount(UNKNOWN_DIR)
         curr_count = 0
         for path, _, files in os.walk(UNKNOWN_DIR):
@@ -872,7 +873,6 @@ class Ui_Kwikpic(object):
                 if img is not None:
                     self.watermark_progress.setText(
                         str(str(curr_count)+" out of "+str(count)+" images optimized"))
-                    print('Original Dimensions : '+img_name, img.shape)
                     scale_percent = 60
                     shape = img.shape
                     if shape[0] > shape[1]:
@@ -880,29 +880,47 @@ class Ui_Kwikpic(object):
                             scale_percent = 100
                         else:
                             scale_percent = 216000 / shape[0]
-                            print(scale_percent)
                     else:
                         if shape[1] <= 2160:
                             scale_percent = 100
                         else:
                             scale_percent = 216000 / shape[1]
-                            print(scale_percent)
                     width = int(img.shape[1] * scale_percent / 100)
                     height = int(img.shape[0] * scale_percent / 100)
                     dim = (width, height)
                     resized = cv2.resize(
                         img, dim, interpolation=cv2.INTER_AREA)
-                    print('Resized Dimensions : ', resized.shape)
                     dir_name = os.path.dirname(img_rel_path)
                     if not os.path.exists(COMPRESS_DIR+dir_name) and not COMPRESS_DIR+dir_name == "":
                         os.makedirs(COMPRESS_DIR+dir_name)
                     img_rel_path = img_rel_path.rsplit(".", 1)[0]+".jpg"
                     cv2.imwrite(COMPRESS_DIR+img_rel_path, resized,
                                 [int(cv2.IMWRITE_JPEG_QUALITY), QUALITY_PERCENTAGE])
-        shutil. rmtree(UNKNOWN_DIR)
-        os.rename(COMPRESS_DIR, UNKNOWN_DIR)
+        shutil.rmtree(UNKNOWN_DIR)
         self.watermark_progress.setText(
             "Completed. "+str(count)+" images watermarked and optimized")
+
+
+def isDestInSrc(src, dest):
+    '''
+    Not Allowed Example:
+    src = /sanjib/pics
+    dest = /sanjib/pics/rename
+    '''
+    srcList = src.split("/")
+    destList = dest.split("/")
+    i = 0
+    while i < min(len(srcList), len(destList)):
+        if (len(srcList) == 0 or len(destList) == 0):
+            break
+        if srcList[i] == destList[i]:
+            del srcList[i]
+            del destList[i]
+            i -= 1
+        else:
+            return False
+        i += 1
+    return True
 
 
 def fileCount(folder):
@@ -948,7 +966,6 @@ def add_text_watermark(image_path, text, size=11, directory="", text_position="b
         new_path = directory+file_name
     else:
         new_path = directory+"/"+file_name
-    print(new_path)
     watermark_image.save(new_path, subsampling=0)
 
 
