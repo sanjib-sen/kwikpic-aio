@@ -506,32 +506,54 @@ class Ui_Kwikpic(object):
         x = threading.Thread(target=self.renameProcess)
         x.start()
 
-    def renameProcess(self):
-        UNKNOWN_DIR = self.rename_src.text()
+    def renameProcess(self, givenPath=None, givenDestination=None):
+        UNKNOWN_DIR = None
+        if not givenPath:
+            UNKNOWN_DIR = self.rename_src.text()
+        else:
+            UNKNOWN_DIR = givenPath
         path = UNKNOWN_DIR
+        self.rename_progress.setText("Renaming... Please wait...")
         try:
             currentPath = path
             filesList = os.listdir(currentPath)
-            newDir = currentPath
-            newDir = os.path.join(currentPath, 'renamed')
-            print("Debug", currentPath+"/"+"renamed",
-                  os.path.exists(currentPath+"/"+"renamed"))
-            if not os.path.exists(currentPath+"/"+"renamed"):
-                os.mkdir(newDir)
+            newDir = None
+            if not givenDestination:
+                newDir = os.path.join(currentPath, 'renamed')
+                if not os.path.exists(os.path.join(currentPath, 'renamed')):
+                    os.mkdir(newDir)
+            else:
+                newDir = givenDestination
+
+            # print(newDir)
             for item in filesList:
+                # print("THIS IS AN ITEM", item)
                 try:
-                    if os.path.isfile(currentPath+"/"+item) and ".py" not in item:
+                    # print(os.path.join(currentPath, item))
+                    # print(os.path.isfile(os.path.join(currentPath, item)))
+                    if os.path.isfile(os.path.join(currentPath, item)):
+
                         # execute rename operation
                         filteredName = unquote(item.rsplit("@", 1)[-1])
+
+                        # print(filteredName, os.path.join(
+                        #     currentPath, item), os.path.join(newDir, filteredName))
                         shutil.copyfile(os.path.join(
                             currentPath, item), os.path.join(newDir, filteredName))
-                        print("done", filteredName)
+                        print("-----------edwdwddw--------------------",
+                              'FROM:', os.path.join(
+                                  currentPath, item), 'TO:', os.path.join(newDir, filteredName))
+                        # print("done", filteredName)
                     else:
-                        print("skipped", item)
+                        if not os.path.exists(os.path.join(newDir, item)):
+                            os.mkdir(os.path.join(newDir, item))
+                        givenPath = os.path.join(currentPath, item)
+                        givenDestination = os.path.join(newDir, item)
+                        print(givenPath, givenDestination)
+                        self.renameProcess(givenPath, givenDestination)
                 except Exception as e:
-                    print("failed for", item)
-            print("Rename and copy done.")
-            print()
+                    # print("failed for", item)
+                    pass
         except Exception as e:
             self.rename_progress.setText("Error occurred:", e)
         self.rename_progress.setText("Rename and copy done.")
@@ -577,9 +599,7 @@ class Ui_Kwikpic(object):
         for path, _, files in os.walk(UNKNOWN_DIR):
 
             for img_name in files:
-                curr_count += 1
-                self.optimize_progress.setText(
-                    str(str(curr_count)+" out of "+str(count)+" images optimized"))
+
                 img_path = os.path.join(path, img_name)
 
                 img_rel_path = os.path.relpath(img_path, UNKNOWN_DIR)
@@ -624,6 +644,7 @@ class Ui_Kwikpic(object):
                     img_rel_path = img_rel_path.rsplit(".", 1)[0]+".jpg"
                     cv2.imwrite(COMPRESS_DIR+img_rel_path, resized,
                                 [int(cv2.IMWRITE_JPEG_QUALITY), QUALITY_PERCENTAGE])
+                    curr_count += 1
 
         self.optimize_progress.setText(
             "Complete. "+str(count)+" images optimized")
@@ -808,6 +829,9 @@ class Ui_Kwikpic(object):
                     img_rel_path = img_rel_path.rsplit(".", 1)[0]+".jpg"
                     cv2.imwrite(COMPRESS_DIR+img_rel_path, resized,
                                 [int(cv2.IMWRITE_JPEG_QUALITY), QUALITY_PERCENTAGE])
+        shutil. rmtree(self.watermark_src.text()+"/Watermarked Images/")
+        os.rename(self.watermark_src.text()+"/Optimized Images/",
+                  self.watermark_src.text()+"/Watermarked Images/")
         self.watermark_progress.setText(
             "Completed. "+str(count)+" images watermarked and optimized")
 
@@ -816,14 +840,13 @@ def fileCount(folder):
     "count the number of files in a directory"
     exts = ['.bmp', '.dib', '.jpeg', '.jpg', '.jp2', '.png', '.webp',
             '.pbm', '.pgm', '.ppm', '.pxm', '.pnm', '.pfm', '.sr', '.ras',
-            '.tiff', '.tif', '.exr', '.hdr', '.pic']
+            '.tiff', '.tif', '.exr', '.hdr', '.pic', '.ico']
     count = 0
 
     for filename in os.listdir(folder):
         path = os.path.join(folder, filename)
-
         if os.path.isfile(path):
-            if path.endswith(tuple(exts)):
+            if path.lower().endswith(tuple(exts)):
                 count += 1
         elif os.path.isdir(path):
             count += fileCount(path)
