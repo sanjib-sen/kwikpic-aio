@@ -5,7 +5,7 @@
 ### Windows
 
 ```sh
-python -m venv venv && ./venv/Scripts/activate && pip install pillow opencv-python pyqt6 pyinstaller && python main.py
+python -m venv venv && ./venv/Scripts/activate && pip install pillow opencv-python pyqt5 pyinstaller && python main.py
 ```
 
 ### Mac
