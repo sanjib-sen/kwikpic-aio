@@ -68,7 +68,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -85,7 +85,7 @@
        <rect>
         <x>160</x>
         <y>150</y>
-        <width>381</width>
+        <width>131</width>
         <height>21</height>
        </rect>
       </property>
@@ -141,7 +141,7 @@
        <rect>
         <x>160</x>
         <y>129</y>
-        <width>121</width>
+        <width>181</width>
         <height>21</height>
        </rect>
       </property>
@@ -164,8 +164,8 @@
        <rect>
         <x>320</x>
         <y>360</y>
-        <width>131</width>
-        <height>21</height>
+        <width>141</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -203,13 +203,13 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../../Downloads/Primary_Logo.png</pixmap>
+       <pixmap>../../Downloads/Primary_Logo.png</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="watermark_browse_src">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>290</x>
         <y>150</y>
         <width>71</width>
         <height>21</height>
@@ -432,6 +432,58 @@
        <string>Click &quot;Add Watermark&quot; to continue...</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="watermark_browse_src_2">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>150</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Browse</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>129</y>
+        <width>201</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Destination Folder</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="watermark_src_2">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>150</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="optimize">
      <attribute name="title">
@@ -440,14 +492,14 @@
      <widget class="QPushButton" name="optimize_submit">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>270</y>
-        <width>81</width>
-        <height>21</height>
+        <x>340</x>
+        <y>230</y>
+        <width>111</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>Optimize</string>
+       <string>Optimize Images</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="optimize_src">
@@ -455,7 +507,7 @@
        <rect>
         <x>170</x>
         <y>190</y>
-        <width>401</width>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -472,9 +524,9 @@
      <widget class="QLineEdit" name="optimize_destination">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>240</y>
-        <width>401</width>
+        <x>400</x>
+        <y>190</y>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -498,13 +550,13 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../../Downloads/Primary_Logo.png</pixmap>
+       <pixmap>../../Downloads/Primary_Logo.png</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="optimize_browse_src">
       <property name="geometry">
        <rect>
-        <x>580</x>
+        <x>310</x>
         <y>190</y>
         <width>71</width>
         <height>21</height>
@@ -517,8 +569,8 @@
      <widget class="QPushButton" name="optimize_browse_destination">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>240</y>
+        <x>540</x>
+        <y>190</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -532,7 +584,7 @@
        <rect>
         <x>170</x>
         <y>170</y>
-        <width>91</width>
+        <width>121</width>
         <height>21</height>
        </rect>
       </property>
@@ -553,9 +605,9 @@
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>220</y>
-        <width>121</width>
+        <x>400</x>
+        <y>170</y>
+        <width>231</width>
         <height>21</height>
        </rect>
       </property>
@@ -604,9 +656,9 @@
      <widget class="QLineEdit" name="rename_src">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>220</y>
-        <width>361</width>
+        <x>170</x>
+        <y>190</y>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -620,10 +672,10 @@
      <widget class="QPushButton" name="rename_submit">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>260</y>
+        <x>340</x>
+        <y>230</y>
         <width>111</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -643,14 +695,14 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../../Downloads/Primary_Logo.png</pixmap>
+       <pixmap>../../Downloads/Primary_Logo.png</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="rename_browse_src">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>220</y>
+        <x>310</x>
+        <y>190</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -662,9 +714,9 @@
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>200</y>
-        <width>91</width>
+        <x>170</x>
+        <y>170</y>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -685,9 +737,9 @@
      <widget class="QLabel" name="rename_progress">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>170</x>
         <y>330</y>
-        <width>441</width>
+        <width>481</width>
         <height>141</height>
        </rect>
       </property>
@@ -705,6 +757,58 @@
        <string>Click &quot;Rename Files&quot; to continue</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="rename_browse_destination">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>190</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Browse</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="rename_destination">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>190</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>170</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <stylestrategy>PreferAntialias</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Destination Folder</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="copy">
      <attribute name="title">
@@ -713,10 +817,10 @@
      <widget class="QPushButton" name="copy_submit">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>320</y>
-        <width>81</width>
-        <height>21</height>
+        <x>320</x>
+        <y>270</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -746,15 +850,15 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../../Downloads/Primary_Logo.png</pixmap>
+       <pixmap>../../Downloads/Primary_Logo.png</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="copy_browse_src_textFile">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>560</x>
         <y>230</y>
-        <width>71</width>
+        <width>81</width>
         <height>21</height>
        </rect>
       </property>
@@ -765,9 +869,9 @@
      <widget class="QLineEdit" name="copy_destination_folder">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>280</y>
-        <width>391</width>
+        <x>420</x>
+        <y>180</y>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -775,9 +879,9 @@
      <widget class="QPushButton" name="copy_browse_destination_folder">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>280</y>
-        <width>71</width>
+        <x>560</x>
+        <y>180</y>
+        <width>81</width>
         <height>21</height>
        </rect>
       </property>
@@ -811,9 +915,9 @@
      <widget class="QLabel" name="label_30">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>260</y>
-        <width>121</width>
+        <x>420</x>
+        <y>160</y>
+        <width>181</width>
         <height>21</height>
        </rect>
       </property>
@@ -857,7 +961,7 @@
      <widget class="QPushButton" name="copy_browse_src_folder">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>320</x>
         <y>180</y>
         <width>71</width>
         <height>21</height>
@@ -872,7 +976,7 @@
        <rect>
         <x>170</x>
         <y>160</y>
-        <width>91</width>
+        <width>151</width>
         <height>21</height>
        </rect>
       </property>
@@ -895,7 +999,7 @@
        <rect>
         <x>170</x>
         <y>180</y>
-        <width>391</width>
+        <width>151</width>
         <height>21</height>
        </rect>
       </property>
